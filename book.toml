@@ -1,0 +1,14 @@
+[book]
+title = "Guia Definitivo de Estudos — Linguagem de Programação"
+author = "Renan Habache"
+language = "pt-BR"
+multilingual = false
+src = "src"
+
+[build]
+build-dir = "book"
+create-missing = true
+
+[output.html]
+git-repository-url = "https://github.com/HabacheRenan/Guia-Java-para-LP"
+default-theme = "light"

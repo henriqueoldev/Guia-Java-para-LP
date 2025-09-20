@@ -1,0 +1,1366 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Guia Definitivo de Estudos — Linguagem de Programação</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Guia Definitivo de Estudos — Linguagem de Programação</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HabacheRenan/Guia-Java-para-LP" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="resumo-do-guia"><a class="header" href="#resumo-do-guia">Resumo do Guia</a></h1>
+<p>Este material começou a ser escrito em <strong>2025/2</strong> e é um <strong>guia definitivo para a disciplina de Linguagem de Programação (LP)</strong>.</p>
+<p>O objetivo é <strong>explicar passo a passo os conceitos de programação em Java</strong>, desde o básico até tópicos mais avançados, de um jeito simples e organizado. Ele serve tanto para quem já entende um pouco de programação quanto para quem está começando agora — até os alunos que acham a matéria difícil vão conseguir acompanhar.</p>
+<h2 id="o-que-você-vai-encontrar-aqui"><a class="header" href="#o-que-você-vai-encontrar-aqui">O que você vai encontrar aqui</a></h2>
+<ul>
+<li><strong>Ensino</strong> → explicações iniciais, lógica básica e introdução ao Java.</li>
+<li><strong>Sintaxe</strong> → como escrever programas em Java, entender variáveis, condições, repetições, funções e orientação a objetos.</li>
+<li><strong>Exercícios</strong> → listas para treinar o que foi aprendido.</li>
+<li><strong>Explicações</strong> → revisão detalhada dos principais assuntos.</li>
+<li><strong>Resoluções</strong> → respostas comentadas dos exercícios.</li>
+<li><strong>Simulados</strong> → questões extras para treinar antes das provas.</li>
+</ul>
+<h2 id="por-que-este-guia-é-importante"><a class="header" href="#por-que-este-guia-é-importante">Por que este guia é importante?</a></h2>
+<ul>
+<li>Ele organiza todo o conteúdo da matéria em partes fáceis de estudar.</li>
+<li>Mostra exemplos práticos em <strong>Java</strong> para que você aprenda não só a teoria, mas também a prática.</li>
+<li>Ajuda a <strong>entender, praticar e revisar</strong> antes das avaliações.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="considerações"><a class="header" href="#considerações">Considerações</a></h1>
+<p><strong>Olá!</strong> Meu nome é <strong>Renan</strong> e atualmente curso o 6º semestre de Análise e
+Desenvolvimento de Sistemas na Faculdade de Tecnologia da Zona Leste (FATEC-
+ZL). Além de estudante, já atuei e atuo como monitor em diversas disciplinas da
+instituição.</p>
+<p>Este guia prático foi criado com o propósito de reunir, de forma clara e acessível, tudo
+o que você precisa <em>—e até um pouco mais—</em> para compreender e ser aprovado na
+disciplina de Linguagem de Programação.</p>
+<p>A motivação para desenvolver este material nasceu da vontade de ajudar outros
+estudantes que, assim como eu no passado, enfrentaram dificuldades nessa jornada.
+Pela falta de tempo <em>—consequência da rotina intensa de trabalho e estudo—</em> não
+consigo oferecer apoio individual a todos que precisariam, e por isso decidi
+transformar minha experiência em um guia completo, organizado e didático.</p>
+<p>Este guia está sendo desenvolvido no 2º semestre de 2025, período em que sigo
+conciliando minha graduação com outras responsabilidades, e também
+compartilhando experiências como monitor.</p>
+<p>4Aqui você encontrará explicações detalhadas, exemplos práticos, atividades para
+exercitar, e até mesmo abordagens que exploram a linguagem em um nível mais
+profundo, permitindo que cada estudante aprenda de acordo com seu próprio estilo:
+seja pela prática, pela teoria ou pela compreensão do funcionamento interno da
+linguagem.</p>
+<p>Espero que este guia seja não apenas uma ferramenta de estudo, mas também um
+apoio real na sua caminhada acadêmica. Aproveite ao máximo!</p>
+<h2 id="contato"><a class="header" href="#contato">Contato</a></h2>
+<p>Caso queira entrar em contato comigo —seja para compartilhar experiências, aprendizados ou até mesmo agradecimentos— aqui estão minhas formas de contato</p>
+<ul>
+<li><strong>E-mail: renanhabache@gmail.com</strong></li>
+<li><strong>MS Teams: renan.habache</strong></li>
+<li><strong>Instagram: @renn_habache</strong></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sintaxe-java"><a class="header" href="#sintaxe-java">Sintaxe Java</a></h1>
+<p>Para Programar em Java, você precisará primeiramente de uma estrutura básica, na
+qual todos os seus projetos deverão ter:</p>
+<pre><code class="language-java">package exemplo ;
+public class Exemplos {
+public static void main (String []args ) {
+    System .out.println ("Olá Mundo" );
+}
+</code></pre>
+<p>}</p>
+<ul>
+<li>public class {NOME} se refere ao nome do seu arquivo Java, ele precisa
+estritamente ser o mesmo nome
+6</li>
+<li>public static void main(String[]args) se refere ao “bit mágico” que indica para
+seu computador onde é o início do seu código, ou seja, sem ele sua máquina
+não faz a mínima ideia de onde começar a compilar e posteriormente executar
+o código.</li>
+</ul>
+<p><strong>Em um projeto com diversas classes, é possível ter um “void main” por classe, porém
+essa maneira não é recomendada pois fere as boas práticas de JAVA.</strong></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="boas-práticas"><a class="header" href="#boas-práticas">Boas Práticas</a></h1>
+<h1 id="diretrizes-de-nomenclatura-e-boas-práticas"><a class="header" href="#diretrizes-de-nomenclatura-e-boas-práticas">Diretrizes de Nomenclatura e Boas Práticas</a></h1>
+<h2 id="1-nome-de-classes"><a class="header" href="#1-nome-de-classes">1. Nome de Classes</a></h2>
+<ul>
+<li>Sempre inicie com letra maiúscula.</li>
+<li>Use o padrão PascalCase: <code>Cliente</code>, <code>ContaBancaria</code>, <code>CalculadoraImpostoComposto</code>.</li>
+</ul>
+<h2 id="2-nome-de-métodos"><a class="header" href="#2-nome-de-métodos">2. Nome de Métodos</a></h2>
+<ul>
+<li>Sempre inicie com letra minúscula.</li>
+<li>Use o padrão camelCase: <code>calcularTotal()</code>, <code>abrirConta()</code>, <code>imprimirRelatorio()</code>.</li>
+</ul>
+<h2 id="3-nome-de-variáveis-e-atributos"><a class="header" href="#3-nome-de-variáveis-e-atributos">3. Nome de Variáveis e Atributos</a></h2>
+<ul>
+<li>Sempre em camelCase, começando com letra minúscula: <code>saldoAtual</code>, <code>nomeCliente</code>, <code>quantidadeProdutos</code>.</li>
+<li>Evite abreviações confusas: prefira <code>telefoneContato</code> em vez de <code>telCt</code>.</li>
+</ul>
+<h2 id="4-nome-de-constantes"><a class="header" href="#4-nome-de-constantes">4. Nome de Constantes</a></h2>
+<ul>
+<li>Sempre em MAIÚSCULAS, com palavras separadas por _: <code>TAXA_JUROS</code>, <code>LIMITE_MAXIMO</code>.</li>
+</ul>
+<h2 id="5-indentação-e-espaçamento"><a class="header" href="#5-indentação-e-espaçamento">5. Indentação e Espaçamento</a></h2>
+<ul>
+<li>Use indentação consistente (4 espaços ou 1 TAB é o padrão em Java).</li>
+<li>Deixe linhas em branco para separar blocos lógicos de código, aumentando a legibilidade.</li>
+</ul>
+<h2 id="6-tamanho-das-classes-e-métodos"><a class="header" href="#6-tamanho-das-classes-e-métodos">6. Tamanho das Classes e Métodos</a></h2>
+<ul>
+<li>Prefira classes e métodos curtos, com responsabilidades bem definidas.</li>
+<li>Se um método faz muitas coisas, divida em métodos menores.</li>
+</ul>
+<h2 id="7-tamanho-de-métodos-e-parâmetros"><a class="header" href="#7-tamanho-de-métodos-e-parâmetros">7. Tamanho de Métodos e Parâmetros</a></h2>
+<ul>
+<li>Mantenha métodos curtos e objetivos: entre 10 e 30 linhas é o recomendado. Métodos muito grandes dificultam leitura e manutenção.</li>
+<li>Uma responsabilidade por método: se ele fizer mais de uma coisa, divida em métodos menores.</li>
+<li>Número de parâmetros:
+<ul>
+<li>Até 3 → ideal.</li>
+<li>4 → aceitável, mas pode indicar que precisa de revisão.</li>
+<li>5 ou mais → má prática. O recomendável é criar um objeto para agrupar esses dados.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-comentários"><a class="header" href="#8-comentários">8. Comentários</a></h2>
+<ul>
+<li>Comente o porquê do código, não apenas o que ele faz.</li>
+<li>Use <code>//</code> para comentários curtos e <code>/** ... */</code> para documentação de métodos e classes (JavaDoc).</li>
+</ul>
+<h2 id="9-tratamento-de-exceções"><a class="header" href="#9-tratamento-de-exceções">9. Tratamento de Exceções</a></h2>
+<ul>
+<li>Nunca deixe blocos try-catch vazios.</li>
+<li>Capture apenas as exceções necessárias, evitando <code>catch(Exception e)</code>.</li>
+<li>Forneça mensagens úteis ao usuário ou ao log.</li>
+</ul>
+<h2 id="10-nomes-significativos"><a class="header" href="#10-nomes-significativos">10. Nomes Significativos</a></h2>
+<ul>
+<li>Dê nomes claros e descritivos a variáveis, métodos e classes.</li>
+<li>Evite nomes genéricos como <code>dados</code>, <code>teste</code>, <code>obj</code>.</li>
+</ul>
+<h2 id="11-organização-de-pacotes"><a class="header" href="#11-organização-de-pacotes">11. Organização de Pacotes</a></h2>
+<ul>
+<li>Agrupe classes de acordo com suas funcionalidades.</li>
+<li>Use nomes de pacotes em minúsculo: <code>br.com.empresa.modelo</code>, <code>br.com.empresa.util</code>.</li>
+</ul>
+<h2 id="12-boas-práticas-de-código-limpo"><a class="header" href="#12-boas-práticas-de-código-limpo">12. Boas Práticas de Código Limpo</a></h2>
+<ul>
+<li>Evite números mágicos (use constantes).</li>
+<li>Prefira composição a herança quando fizer sentido.</li>
+<li>Sempre inicialize variáveis antes de usar.</li>
+<li>Remova código morto ou comentado.</li>
+</ul>
+<h2 id="13-uso-de-chaves"><a class="header" href="#13-uso-de-chaves">13. Uso de Chaves</a></h2>
+<ul>
+<li>Sempre use chaves em blocos de código, mesmo quando o comando for de apenas uma linha.</li>
+<li>Isso evita erros quando novos comandos forem adicionados.</li>
+<li>Exemplo ruim (sem chaves):
+<pre><code class="language-java">if (condicao) executar();
+</code></pre>
+</li>
+<li>Exemplo recomendado (com chaves):
+<pre><code class="language-java">if (condicao) {
+executar();
+}
+</code></pre>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sintaxes-básicas"><a class="header" href="#sintaxes-básicas">Sintaxes Básicas</a></h1>
+<p>Nesta seção, abordaremos a <strong>sintaxe básica</strong> em Java relacionada a <strong>variáveis</strong>, <strong>vetores</strong> e <strong>matrizes</strong>.</p>
+<ul>
+<li><strong>Variáveis</strong>: Usadas para armazenar dados.</li>
+<li><strong>Vetores</strong>: Estruturas que armazenam múltiplos valores do mesmo tipo.</li>
+<li><strong>Matrizes</strong>: Extensões dos vetores que organizam dados em duas ou mais dimensões.</li>
+</ul>
+<p>Esses conceitos são fundamentais para a programação em Java e a manipulação de dados.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variáveis"><a class="header" href="#variáveis">Variáveis</a></h1>
+<p>Exemplos:</p>
+<pre><code class="language-java">package exemplo;
+public class ExemploVariaveis {
+    public static void main(String[] args) {
+        // Variáveis primitivas
+        byte bMax = 127; // valor máximo positivo
+        byte bMin = -128; // valor mínimo negativo
+        short sMax = 32767; // valor máximo positivo
+        short sMin = -32768; // valor mínimo negativo
+        int iMax = 2147483647; // valor máximo positivo
+        int iMin = -2147483648; // valor mínimo negativo
+        long lMax = 9223372036854775807L; // valor máximo positivo
+        long lMin = -9223372036854775808L; // valor mínimo negativo
+        float fMax = 3.4028235E38f; // valor máximo positivo
+        float fMin = -3.4028235E38f; // valor mínimo negativo
+        ouble dMax = 1.7976931348623157E308; // valor máximo positivo
+        double dMin = -1.7976931348623157E308; // valor mínimo negativo
+        char c = 'A';
+        boolean bo = true;
+        
+        // Variáveis de referência
+        String nome = "Guia Definitivo LP";
+        Integer idade = 25;
+        Double altura = 1.75;
+
+        // Exibe valores e limites
+        System.out.println("byte max: " + bMax + ", min: " + bMin);
+        System.out.println("short max: " + sMax + ", min: " + sMin);
+        System.out.println("int max: " + iMax + ", min: " + iMin);
+        System.out.println("long max: " + lMax + ", min: " + lMin);
+        System.out.println("float max: " + fMax + ", min: " + fMin);
+        System.out.println("double max: " + dMax + ", min: " + dMin);
+        System.out.println("char: " + c);
+        System.out.println("boolean: " + bo);
+        System.out.println("String: " + nome);
+        System.out.println("Integer: " + idade);
+        System.out.println("Double (obj): " + altura);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variáveis-globais"><a class="header" href="#variáveis-globais">Variáveis Globais</a></h1>
+<p>Exemplo:</p>
+<pre><code class="language-java">package exemplo;
+public class ExemploGlobal {
+    // Variáveis globais
+    static int a = 10;
+    static int b = 20;
+    public static void main(String[] args) {
+        somar();
+    }
+    public static void somar() {
+        int soma = a + b;
+        System.out.println("A soma é: " + soma);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variáveis-locais"><a class="header" href="#variáveis-locais">Variáveis Locais</a></h1>
+<p>Exemplo:</p>
+<pre><code class="language-java">package exemplo;
+public class ExemploLocal {
+    public static void main(String[] args) {
+        somar();
+    }
+    public static void somar() {
+        // Variáveis locais
+        int a = 10;
+        int b = 20;
+        int soma = a + b;
+        System.out.println("A soma é: " + soma);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variáveis-estáticas"><a class="header" href="#variáveis-estáticas">Variáveis Estáticas</a></h1>
+<p>Exemplo:</p>
+<pre><code class="language-java">package exemplo;
+public class Contador {
+    // Variável estática (compartilhada entre todos os objetos)
+    static int totalObjetos = 0;
+    // Construtor
+    public Contador() {
+        totalObjetos++; // toda vez que cria um objeto, incrementa
+    }
+    public static void main(String[] args) {
+        Contador c1 = new Contador();
+        Contador c2 = new Contador();
+        Contador c3 = new Contador();
+        // Acessando variável estática diretamente pela classe
+        System.out.println(
+        "Total de objetos criados: " + Contador.totalObjetos);
+        // Total de objetos criados: 3
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vetores"><a class="header" href="#vetores">Vetores</a></h1>
+<p>Exemplo:</p>
+<pre><code class="language-java">package exemplo;
+public class ExemploVetores {
+    public static void main(String[] args) {
+        // Declarando e inicializando um vetor de inteiros
+        int[] numeros = {10, 20, 30, 40, 50};
+        // Acessando um elemento do vetor
+        System.out.println("Primeiro número: " + numeros[0]);
+        System.out.println("Último número: " + numeros[numeros.length - 1]);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="matrizes"><a class="header" href="#matrizes">Matrizes</a></h1>
+<p>Exemplo:</p>
+<pre><code class="language-java">package exemplo;
+public class ExemploMatrizes {
+    public static void main(String[] args) {
+        // Declarando e inicializando uma matriz 3x3
+        int[][] matriz = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    // Acessando elementos da matriz
+    System.out.println("Elemento [0][0]: " + matriz[0][0]); // 1
+    System.out.println("Elemento [1][2]: " + matriz[1][2]); // 6
+    System.out.println("Elemento [2][1]: " + matriz[2][1]); // 8
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-condicional---if"><a class="header" href="#estrutura-condicional---if">Estrutura Condicional - if</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploIf {
+    public static void main(String[] args) {
+        int numero = 10;
+        if (numero &gt; 0) {
+            System.out.println("O número é positivo.");
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-condicional---else"><a class="header" href="#estrutura-condicional---else">Estrutura Condicional - else</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploElse {
+    public static void main(String[] args) {
+        int numero = -5;
+        if (numero &gt;= 0) {
+            System.out.println("Número positivo ou zero.");
+        } else {
+            System.out.println("Número negativo.");
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-condicional---else-if"><a class="header" href="#estrutura-condicional---else-if">Estrutura Condicional - else if</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploElseIf {
+    public static void main(String[] args) {
+        int idade = 20;
+        if (idade &lt; 12) {
+            System.out.println("Criança");
+        } else if (idade &lt; 18) {
+            System.out.println("Adolescente");
+        } else if (idade &lt; 60) {
+            System.out.println("Adulto");
+        } else {
+            System.out.println("Idoso");
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-condicional---switch-case"><a class="header" href="#estrutura-condicional---switch-case">Estrutura Condicional - switch case</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploSwitchCase {
+    public static void main(String[] args) {
+        int dia = 3; // 1 = domingo, 2 = segunda, etc.
+        switch (dia) {
+            case 1: System.out.println("Domingo"); break;
+            case 2: System.out.println("Segunda-feira"); break;
+            case 3: System.out.println("Terça-feira"); break;
+            case 4: System.out.println("Quarta-feira"); break;
+            case 5: System.out.println("Quinta-feira"); break;
+            case 6: System.out.println("Sexta-feira"); break;
+            case 7: System.out.println("Sábado"); break;
+            default: System.out.println("Dia inválido");
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-de-repetição---enquanto-while"><a class="header" href="#estrutura-de-repetição---enquanto-while">Estrutura de Repetição - enquanto (while)</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploWhile {
+    public static void main(String[] args) {
+        int contador = 1;
+        while (contador &lt;= 5) {
+            System.out.println("Contador: " + contador);
+            contador++;
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-de-repetição---para-for"><a class="header" href="#estrutura-de-repetição---para-for">Estrutura de Repetição - para (for)</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploFor {
+    public static void main(String[] args) {
+        for (int contador = 1; contador &lt;= 5; contador++) {
+            System.out.println("Contador: " + contador);
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-de-repetição---faça-enquanto-do-while"><a class="header" href="#estrutura-de-repetição---faça-enquanto-do-while">Estrutura de Repetição - faça... enquanto (do-while)</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploDoWhile {
+    public static void main(String[] args) {
+        int contador = 1;
+        do {
+            System.out.println("Contador: " + contador);
+            contador++;
+        } while (contador &lt;= 5);
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estrutura-de-repetição---para-cada-for-each"><a class="header" href="#estrutura-de-repetição---para-cada-for-each">Estrutura de Repetição - para cada (for-each)</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploForEach {
+    public static void main(String[] args) {
+        int[] numeros = {1, 2, 3, 4, 5};
+        for (int numero : numeros) {
+            System.out.println("Contador: " + numero);
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="recursividade"><a class="header" href="#recursividade">Recursividade</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploRecursivo {
+    public static void main(String[] args) {
+        imprimirContador(1);
+    }
+    public static void imprimirContador(int contador) {
+        if (contador &lt;= 5) {
+            System.out.println("Contador: " + contador);
+            imprimirContador(contador + 1);
+        }
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="modularização---procedimento"><a class="header" href="#modularização---procedimento">Modularização - Procedimento</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploProcedimento {
+    public static void main(String[] args) {
+        exibirMensagem("Renan");
+        exibirMensagem("Habache");
+    }
+    public static void exibirMensagem(String nome) {
+        System.out.println("Olá, " + nome + "! Bem-vindo ao Java.");
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="modularização---função"><a class="header" href="#modularização---função">Modularização - Função</a></h1>
+<pre><code class="language-java">package exemplo;
+public class ExemploFuncao {
+    public static void main(String[] args) {
+        int resultado = somar(5, 7);
+        System.out.println("O resultado da soma é: " + resultado);
+    }
+    public static int somar(int a, int b) {
+        return a + b;
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---joptionpane"><a class="header" href="#entrada-de-dados---joptionpane">Entrada de Dados - JOptionPane</a></h1>
+<pre><code class="language-java">package exemplo;
+import javax.swing.JOptionPane;
+public class Exemplos {
+    public static void main(String[] args) {
+        String nome = JOptionPane.showInputDialog("Digite seu nome:");
+        String idadeStr = JOptionPane.showInputDialog("Digite sua idade:");
+        int idade = Integer.parseInt(idadeStr);
+        JOptionPane.showMessageDialog(null,"Olá" + nome + "! Você tem " + idade + " anos");
+    }
+}
+</code></pre>
+<ul>
+<li>Integer.parseInt(String) → converte para int</li>
+<li>Float.parseFloat(String) → converte para float</li>
+<li>Double.parseDouble(String) → converte para double</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---scanner"><a class="header" href="#entrada-de-dados---scanner">Entrada de Dados - Scanner</a></h1>
+<pre><code class="language-java">package exemplo;
+import java.util.Scanner;
+public class Exemplos {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Digite seu nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Digite sua idade: ");
+        int idade = sc.nextInt();
+        System.out.print("Digite seu peso (ex: 70.5): ");
+        float peso = sc.nextFloat();
+        System.out.print("Digite sua altura (ex: 1.75): ");
+        double altura = sc.nextDouble();
+        System.out.println("\nResumo do usuário:");
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade + " anos");
+        System.out.println("Peso: " + peso + " kg");
+        System.out.println("Altura: " + altura + " m");
+        sc.close();
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---ioexception"><a class="header" href="#entrada-de-dados---ioexception">Entrada de Dados - IOException</a></h1>
+<ul>
+<li>Operações de I/O podem gerar erros inesperados como arquivo não encontrado ou falta de permissão.</li>
+<li>IOException é uma checked exception e deve ser tratada com try-catch ou propagada com throws.</li>
+</ul>
+<pre><code class="language-java">package exemplo;
+import java.io.IOException;
+public class Exemplos {
+    public static void main(String[] args) {
+        ler();
+    }
+    public static void ler() throws IOException{
+        tentarLerArquivo();
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---filewriter"><a class="header" href="#entrada-de-dados---filewriter">Entrada de Dados - FileWriter</a></h1>
+<pre><code class="language-java">package exemplo;
+import java.io.FileWriter;
+import java.io.IOException;
+public class Exemplos {
+    public static void main(String[] args) throws IOException {
+        FileWriter writer = new FileWriter("saida.txt");
+        writer.write("Olá, mundo!\n");
+        writer.write("Este é um exemplo de FileWriter.\n");
+        writer.close();
+        System.out.println("Arquivo escrito com sucesso!");
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---filereader"><a class="header" href="#entrada-de-dados---filereader">Entrada de Dados - FileReader</a></h1>
+<pre><code class="language-java">package exemplo;
+import java.io.FileReader;
+import java.io.IOException;
+public class Exemplos {
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader("entrada.txt");
+        int caractere;
+        while ((caractere = fr.read()) != -1) {
+            System.out.print((char) caractere);
+        }
+        fr.close();
+        System.out.println("\nLeitura do arquivo concluída!");
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---bufferedwriter"><a class="header" href="#entrada-de-dados---bufferedwriter">Entrada de Dados - BufferedWriter</a></h1>
+<pre><code class="language-java">package exemplo;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+public class Exemplos {
+    public static void main(String[] args) throws IOException {
+        FileWriter fw = new FileWriter("saida.txt");
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("Olá, mundo!");
+        bw.newLine();
+        bw.write("Este é um exemplo com BufferedWriter.");
+        bw.close();
+        System.out.println("Arquivo escrito com sucesso usando BufferedWriter!");
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-de-dados---bufferedreader"><a class="header" href="#entrada-de-dados---bufferedreader">Entrada de Dados - BufferedReader</a></h1>
+<pre><code class="language-java">package exemplo;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+public class Exemplos {
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader("entrada.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String linha = "";
+        while ((linha = br.readLine()) != null) {
+            System.out.println(linha);
+        }
+        br.close();
+        System.out.println("Leitura do arquivo concluída!");
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="poo---instanciamento-de-classes"><a class="header" href="#poo---instanciamento-de-classes">POO - Instanciamento de Classes</a></h1>
+<pre><code class="language-java">package exemplo;
+public class Exemplos {
+    public static void main(String[] args) {
+        Exercicio1DoLote1 apelido = new Exercicio1DoLote1();
+        int lado = 5;
+        System.out.println(apelido.calcularArea(lado));
+    }
+}
+</code></pre>
+<pre><code class="language-java">package exemplo;
+public class Exercicio1DoLote1 {
+    public int calcularArea(int lado) {
+        int area = lado * lado;
+        return area;
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="listas-de-exercícios-do-professor-satoshi"><a class="header" href="#listas-de-exercícios-do-professor-satoshi"><center>Listas de exercícios do professor Satoshi</a></h1>
+<ul>
+<li><a href="Exercicios/">Lote 1</a>
+<ul>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote1_Estruturas_Sequenciais.html">Estruturas Sequenciais</a></li>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote1_Estruturas_Decisoes.html">Estruturas de Decisões</a></li>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote1_Estruturas_Decisoes_Desafio.html">Estruturas de Decisões - Desafio</a></li>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote1_Estruturas_Repeticoes.html">Estruturas de Repetições</a></li>
+</ul>
+</li>
+<li><a href="Exercicios/">Lote 2</a>
+<ul>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote2_Modularizacao.html">Modularização</a></li>
+</ul>
+</li>
+<li><a href="Exercicios/">Lote 3</a>
+<ul>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote3_Vetores.html">Vetores</a></li>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote3_Matrizes.html">Matrizes</a></li>
+</ul>
+</li>
+<li><a href="Exercicios/">Lote 4</a>
+<ul>
+<li><a href="Exercicios/../Exercicios/Exercicios_Lote4_Recursividade.html">Recursividade</a></li>
+</ul>
+</li>
+<li><a href="Exercicios/">2° Bimestre</a>
+<ul>
+<li><a href="Exercicios/../Exercicios/Sistema_Registros_Fisicos.html">Sistema com Registros Físicos</a></li>
+<li><a href="Exercicios/../Exercicios/Aluno.html">Aluno</a></li>
+<li><a href="Exercicios/../Exercicios/Transito.html">Trânsito</a></li>
+<li><a href="Exercicios/../Exercicios/Eleicao.html">Eleição</a></li>
+<li><a href="Exercicios/../Exercicios/Votacao.html">Votação</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-1"><a class="header" href="#exercícios---lote-1">Exercícios - Lote 1</a></h1>
+<h2 id="estruturas-sequenciais"><a class="header" href="#estruturas-sequenciais">Estruturas Sequenciais</a></h2>
+<ol>
+<li>
+<p>Coletar o valor do lado de um quadrado, calcular sua área e apresentar o resultado.</p>
+</li>
+<li>
+<p>Receba o salário de um funcionário e mostre o novo salário com reajuste de 15%.</p>
+</li>
+<li>
+<p>Receba a base e a altura de um triângulo. Calcule e mostre a sua área.</p>
+</li>
+<li>
+<p>Receba a temperatura em graus Celsius. Calcule e mostre a sua temperatura convertida em Fahrenheit:</p>
+<pre><code>F = (9*C + 160) / 5
+</code></pre>
+</li>
+<li>
+<p>Receba os coeficientes A, B e C de uma equação do 2º grau (AX²+BX+C=0).<br />
+Calcule e mostre as raízes reais (considerar que a equação possui 2 raízes).</p>
+</li>
+<li>
+<p>Receba os valores em x e y. Efetue a troca de seus valores e mostre seus conteúdos.</p>
+</li>
+<li>
+<p>Receba os valores do comprimento, largura e altura de um paralelepípedo.<br />
+Calcule e mostre seu volume.</p>
+</li>
+<li>
+<p>Receba o valor de um depósito em poupança. Calcule e mostre o valor após 1 mês de aplicação sabendo que rende 1,3% a.m.</p>
+</li>
+<li>
+<p>Receba 2 números inteiros. Calcule e mostre a soma dos quadrados.</p>
+</li>
+<li>
+<p>Receba 2 números reais. Calcule e mostre a diferença desses valores.</p>
+</li>
+<li>
+<p>Receba o raio de uma circunferência. Calcule e mostre o comprimento da circunferência.</p>
+</li>
+<li>
+<p>Receba o ano de nascimento e o ano atual. Calcule e mostre a sua idade e quantos anos terá daqui a 17 anos.</p>
+</li>
+<li>
+<p>Receba a quantidade de alimento em quilos. Calcule e mostre quantos dias durará esse alimento sabendo que a pessoa consome 50g ao dia.</p>
+</li>
+<li>
+<p>Receba 2 ângulos de um triângulo. Calcule e mostre o valor do 3º ângulo.</p>
+</li>
+<li>
+<p>Receba os valores de 2 catetos de um triângulo retângulo. Calcule e mostre a hipotenusa.</p>
+</li>
+<li>
+<p>Receba a quantidade de horas trabalhadas, o valor por hora, o percentual de desconto e o número de dependentes.</p>
+</li>
+</ol>
+<ul>
+<li>Calcule o salário bruto = horas trabalhadas × valor por hora.</li>
+<li>Calcule o salário líquido = salário bruto – desconto.</li>
+<li>A cada dependente acrescente R$ 100 no salário líquido.</li>
+<li>Exiba o salário a receber.</li>
+</ul>
+<ol start="17">
+<li>Calcule a quantidade de litros gastos em uma viagem, sabendo que o automóvel faz 12 km/l.<br />
+Receber o tempo de percurso e a velocidade média.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-1-1"><a class="header" href="#exercícios---lote-1-1">Exercícios - Lote 1</a></h1>
+<h2 id="estruturas-de-decisões"><a class="header" href="#estruturas-de-decisões">Estruturas de Decisões</a></h2>
+<ol start="18">
+<li>
+<p>Receba 2 valores inteiros. Calcule e mostre o resultado da diferença do maior pelo menor valor.</p>
+</li>
+<li>
+<p>Receba 2 valores reais. Calcule e mostre o maior deles.</p>
+</li>
+<li>
+<p>Receba 3 coeficientes A, B e C de uma equação do 2º grau da fórmula AX²+BX+C=0.<br />
+Verifique e mostre a existência de raízes reais e se caso exista, calcule e mostre.</p>
+</li>
+<li>
+<p>Receba 4 notas bimestrais de um aluno. Calcule e mostre a média aritmética.<br />
+Mostre a mensagem de acordo com a média:</p>
+<ul>
+<li>Se a média for &gt;= 6,0 exibir <strong>APROVADO</strong>;</li>
+<li>Se a média for &gt;= 3,0 e &lt; 6,0 exibir <strong>EXAME</strong>;</li>
+<li>Se a média for &lt; 3,0 exibir <strong>RETIDO</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Receba 2 valores inteiros e diferentes. Mostre seus valores em ordem crescente.</p>
+</li>
+<li>
+<p>Receba 3 valores obrigatoriamente em ordem crescente e um 4º valor não necessariamente em ordem. Mostre os 4 números em ordem crescente.</p>
+</li>
+<li>
+<p>Receba um valor inteiro. Verifique e mostre se é divisível por 2 e 3.</p>
+</li>
+<li>
+<p>Receba a hora de início e de final de um jogo (HH, MM). Calcule o tempo do jogo em horas e minutos, sabendo que o tempo máximo é menor que 24 horas e pode começar num dia e terminar noutro.</p>
+</li>
+<li>
+<p>Receba 2 números inteiros. Verifique e mostre se o maior número é múltiplo do menor.</p>
+</li>
+<li>
+<p>Receba o número de voltas, a extensão do circuito (em metros) e o tempo de duração (minutos). Calcule e mostre a velocidade média em km/h.</p>
+</li>
+<li>
+<p>Receba o preço atual e a média mensal de um produto. Calcule e mostre o novo preço sabendo que:</p>
+</li>
+</ol>
+<div class="table-wrapper"><table><thead><tr><th>Venda Mensal</th><th>Preço Atual</th><th>Preço Novo</th></tr></thead><tbody>
+<tr><td>&lt; 500</td><td>&lt; 30</td><td>+10%</td></tr>
+<tr><td>500–999</td><td>30–79</td><td>+15%</td></tr>
+<tr><td>&gt;= 1000</td><td>&gt;= 80</td><td>-5%</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Obs.: para outras condições, preço novo será igual ao preço atual.</p>
+</blockquote>
+<ol start="29">
+<li>Receba o tipo de investimento (1 = poupança e 2 = renda fixa) e o valor do investimento.<br />
+Calcule e mostre o valor corrigido em 30 dias sabendo que a poupança = 3% e a renda fixa = 5%. Demais tipos não serão considerados.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-1-2"><a class="header" href="#exercícios---lote-1-2">Exercícios - Lote 1</a></h1>
+<h2 id="estruturas-de-decisões---desafio"><a class="header" href="#estruturas-de-decisões---desafio">Estruturas de Decisões - Desafio</a></h2>
+<ol start="30">
+<li>Receba a data de nascimento e a data atual em ano, mês e dia.<br />
+Calcule e mostre a idade em anos, meses e dias, considerando os anos bissextos.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-1-3"><a class="header" href="#exercícios---lote-1-3">Exercícios - Lote 1</a></h1>
+<h2 id="estruturas-de-repetições"><a class="header" href="#estruturas-de-repetições">Estruturas de Repetições</a></h2>
+<ol start="31">
+<li>
+<p>Calcule e mostre o quadrado dos números entre 10 e 150.</p>
+</li>
+<li>
+<p>Receba um número inteiro. Calcule e mostre o seu fatorial.</p>
+</li>
+<li>
+<p>Receba um número. Calcule e mostre a série:</p>
+</li>
+</ol>
+<pre><code>1 + 1/2 + 1/3 + ... + 1/N
+</code></pre>
+<ol start="34">
+<li>
+<p>Receba um número. Calcule e mostre os resultados da tabuada desse número.</p>
+</li>
+<li>
+<p>Receba 2 números inteiros, verifique qual o maior entre eles. Calcule e mostre a somatória dos números ímpares entre esses valores.</p>
+</li>
+<li>
+<p>Receba um número N. Calcule e mostre a série:</p>
+</li>
+</ol>
+<pre><code>1 + 1/1! + 1/2! + ... + 1/N!
+</code></pre>
+<ol start="37">
+<li>
+<p>Receba um número inteiro. Calcule e mostre a série de Fibonacci até o seu N-ésimo termo.</p>
+</li>
+<li>
+<p>Receba 100 números inteiros reais. Verifique e mostre o maior e o menor valor.</p>
+<blockquote>
+<p>Obs.: somente valores positivos.</p>
+</blockquote>
+</li>
+<li>
+<p>Calcule a quantidade de grãos contidos em um tabuleiro de xadrez onde:</p>
+</li>
+</ol>
+<ul>
+<li>Casa: 1 2 3 4 ... 64</li>
+<li>Quantidade: 1 2 4 8 ... N</li>
+</ul>
+<ol start="40">
+<li>
+<p>Receba 2 números inteiros. Verifique e mostre todos os números primos existentes entre eles.</p>
+</li>
+<li>
+<p>Mostre todas as possibilidades de 2 dados de forma que a soma tenha como resultado 7.</p>
+</li>
+<li>
+<p>Calcule e mostre a série:</p>
+</li>
+</ol>
+<pre><code>1 + 2/3 + 3/5 + ... + 50/99
+</code></pre>
+<ol start="43">
+<li>Calcule e mostre quantos anos serão necessários para que Ana seja maior que Maria sabendo que:</li>
+</ol>
+<ul>
+<li>Ana tem 1,10 m e cresce 3 cm ao ano.</li>
+<li>Maria tem 1,5 m e cresce 2 cm ao ano.</li>
+</ul>
+<ol start="44">
+<li>
+<p>Receba o número da base e do expoente. Calcule e mostre o valor da potência.</p>
+</li>
+<li>
+<p>Calcule e mostre a série:</p>
+</li>
+</ol>
+<pre><code>1 – 2/4 + 3/9 – 4/16 + 5/25 + ... + 15/225
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-2"><a class="header" href="#exercícios---lote-2">Exercícios - Lote 2</a></h1>
+<h2 id="modularização"><a class="header" href="#modularização">Modularização</a></h2>
+<blockquote>
+<p>Por padrão, o Professor Ricardo Satoshi pede para modularizar a partir do exercício 16.<br />
+Porém, para nós que queremos gabaritar em LP, vamos fazer <strong>desde o primeiro exercício</strong> de forma modularizada.</p>
+</blockquote>
+<h3 id="instruções"><a class="header" href="#instruções">Instruções:</a></h3>
+<ul>
+<li>Tente resolver cada exercício de 1 até 45 usando <strong>modularização</strong>.</li>
+<li>Formas sugeridas:
+<ul>
+<li><strong>Forma Padrão (Estruturada)</strong></li>
+<li><strong>Função</strong> (função que executa um trecho de código e retorna um valor)</li>
+<li><strong>Procedimento</strong> (função sem retorno)</li>
+</ul>
+</li>
+</ul>
+<p>Caso não saiba a diferença ou como fazer (sintaxe), olhe no sumário as explicações e exemplos.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-3"><a class="header" href="#exercícios---lote-3">Exercícios - Lote 3</a></h1>
+<h2 id="vetores-1"><a class="header" href="#vetores-1">Vetores</a></h2>
+<ol>
+<li>
+<p>Criar e coletar um vetor [50] inteiro. Calcular e exibir:</p>
+<ul>
+<li>A média dos valores entre 10 e 200</li>
+<li>A soma dos números ímpares</li>
+</ul>
+</li>
+<li>
+<p>Criar e coletar um vetor [100] inteiro e exibir:</p>
+<ul>
+<li>O maior e o menor valor</li>
+<li>A média dos valores</li>
+</ul>
+</li>
+<li>
+<p>Criar e coletar valores inteiros nos vetores VT1[3] e VT2[3]. Concatenar esses valores em um 3º vetor (VT3[6]) e mostrar os seus dados.</p>
+<p><strong>Exemplo 1:</strong></p>
+<ul>
+<li>VT1: 1 2 3</li>
+<li>VT2: 4 5 6</li>
+<li>VT3: 1 2 3 4 5 6</li>
+</ul>
+<p><strong>Exemplo 2:</strong></p>
+<ul>
+<li>VT1: 143 12 543</li>
+<li>VT2: 944 21 3</li>
+<li>VT3: 143 12 543 944 21 3</li>
+</ul>
+</li>
+<li>
+<p>Criar e coletar em um vetor [30] real e calcular e exibir:</p>
+<ul>
+<li>A média do grupo</li>
+<li>A quantidade de notas acima do grupo</li>
+<li>As posições dos valores abaixo da média do grupo</li>
+</ul>
+</li>
+<li>
+<p>Criar e coletar em um vetor [20] inteiro. Calcule e exiba, segundo:</p>
+<pre><code>∑ (A[i] – A[21–i]), para i = 1 até 10
+</code></pre>
+</li>
+<li>
+<p>Criar e coletar em um vetor [20] com números aleatórios. Classificar este vetor em ordem crescente e mostrar os dados.</p>
+</li>
+<li>
+<p>A partir do exercício 6 (vetor classificado), solicitar um valor qualquer e verificar a sua existência no vetor (utilizar <strong>pesquisa binária</strong>).</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-3-1"><a class="header" href="#exercícios---lote-3-1">Exercícios - Lote 3</a></h1>
+<h2 id="matrizes-1"><a class="header" href="#matrizes-1">Matrizes</a></h2>
+<ol start="8">
+<li>
+<p>Criar e carregar uma matriz [4][3] inteiro com quantidade de produtos vendidos em 4 semanas. Calcular e exibir:</p>
+<ul>
+<li>A quantidade de cada produto vendido no mês</li>
+<li>A quantidade de produtos vendidos por semana</li>
+<li>O total de produtos vendidos no mês</li>
+</ul>
+</li>
+<li>
+<p>Criar e carregar uma matriz [4][4] com valores aleatórios, sendo que a diagonal principal terá seus dados carregados no programa segundo:</p>
+<pre><code>1  
+   4  
+      6  
+         32  
+            64
+</code></pre>
+</li>
+<li>
+<p>Criar uma matriz [8][8] onde o programa irá carregar segundo e exibir a soma dos valores:</p>
+</li>
+</ol>
+<ul>
+<li>Casa: 0,0 0,1 0,2 ... 0,7</li>
+<li>Valor: 1 2 4 8 ... 128</li>
+</ul>
+<ol start="11">
+<li>Criar uma matriz [8][8] inteiro e o programa irá carregar segundo:</li>
+</ol>
+<pre><code>1 1 1 1 1 1 1 1
+1 2 2 2 2 2 2 1
+1 2 3 3 3 3 2 1
+1 2 3 4 4 3 2 1
+1 2 3 4 4 3 2 1
+1 2 3 3 3 3 2 1
+1 2 2 2 2 2 2 1
+1 1 1 1 1 1 1 1
+</code></pre>
+<ol start="12">
+<li>Carregar códigos das peças em um tabuleiro de xadrez.
+<ul>
+<li>Calcular e mostrar a soma das peças do tabuleiro.</li>
+<li>Não pode utilizar estrutura de decisão e <strong>Escolha Caso</strong> na contagem das peças.</li>
+</ul>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercícios---lote-4"><a class="header" href="#exercícios---lote-4">Exercícios - Lote 4</a></h1>
+<h2 id="recursividade-1"><a class="header" href="#recursividade-1">Recursividade</a></h2>
+<ol>
+<li>
+<p>Série 1:</p>
+<pre><code>(1 + 2 + 3 + ... + 100)
+</code></pre>
+</li>
+<li>
+<p>Série 2:</p>
+<pre><code>(N) + (N-1) + (N-2) + ... + (1)
+</code></pre>
+</li>
+<li>
+<p>Série 3:</p>
+<pre><code>(1/1) + (1/2) + (1/3) + ... + (1/N)
+</code></pre>
+</li>
+<li>
+<p>Série 4:</p>
+<pre><code>(N/1) + (N-1/2) + (N-2/3) + ... + (1/N)
+</code></pre>
+</li>
+<li>
+<p>Série 5:</p>
+<pre><code>(N)! + (N-1)! + (N-2)! + ... + (1)!
+</code></pre>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sistema-com-registros-físicos"><a class="header" href="#sistema-com-registros-físicos">Sistema com Registros Físicos</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sistema-de-aluno"><a class="header" href="#sistema-de-aluno">Sistema de Aluno</a></h1>
+<h2 id="classe-aluno-exemplo"><a class="header" href="#classe-aluno-exemplo">Classe Aluno (Exemplo)</a></h2>
+<pre><code class="language-java">package exemplo;
+class Aluno {
+    String pnome;
+    String unome;
+    int pontos;
+
+    // construtor
+    Aluno () {
+        this("" ,"" ,0);
+    }
+
+    Aluno (String pnomealuno, String unomealuno, int pontosaluno) {
+        pnome = pnomealuno;
+        unome = unomealuno;
+        pontos = pontosaluno;
+    }
+}
+</code></pre>
+<h2 id="classe-registroaluno-exemplo"><a class="header" href="#classe-registroaluno-exemplo">Classe RegistroAluno (Exemplo)</a></h2>
+<pre><code class="language-java">package exemplo;
+import java.io.*;
+import javax.swing.*;
+class RegistroAluno {
+    public static void main (String[] args) {
+        Aluno[] aluno = new Aluno[3];
+        int i, ptos;
+
+        for (i = 0 ; i &lt; 3 ; i++)
+            aluno[i] = new Aluno();
+
+        for (i = 0 ; i &lt; 3 ; i++) {
+            aluno[i].pnome = JOptionPane.showInputDialog("Entre o nome do aluno:");
+            aluno[i].unome = JOptionPane.showInputDialog("Entre o sobrenome do aluno:");
+            aluno[i].pontos = Integer.parseInt(JOptionPane.showInputDialog("Pontos Graduação do aluno:"));
+        }
+
+        for (i = 0 ; i &lt; 3; i++) {
+            System.out.println(aluno[i].pnome + " " + aluno[i].unome + " pontos: " + aluno[i].pontos);
+        }
+
+        System.exit(0);
+    } // fim do método
+} // fim da classe
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sistema-de-trânsito"><a class="header" href="#sistema-de-trânsito">Sistema de Trânsito</a></h1>
+<p>Elaborar a gravação dos dados em “ArquivoEstatistica.txt” e fazer a leitura dos
+dados do arquivo para suas devidas consultas.</p>
+<h2 id="criar-uma-classe-abstrata-segundo"><a class="header" href="#criar-uma-classe-abstrata-segundo">Criar uma Classe Abstrata segundo:</a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Estatística</th><th></th></tr></thead><tbody>
+<tr><td>CodigoCidade</td><td>NomeCidade</td><td>QtdAcidentes</td></tr>
+<tr><td>int</td><td>String</td><td>int</td></tr>
+</tbody></table>
+</div>
+<h2 id="classeprincipal-menu-estatística"><a class="header" href="#classeprincipal-menu-estatística">ClassePrincipal (Menu Estatística)</a></h2>
+<pre><code>-----------------------------------------------------------------
+| Menu Estatística |
+| Estatísticas de acidentes em 2020 |
+| 1 - Cadastro Estatística |
+| 2 - Consulta por quantidade de acidentes |
+| 3 - Consulta por estatísticas de acidentes |
+| 4 - Acidentes acima da média das 10 cidades |
+| 9 - Finaliza |
+-----------------------------------------------------------------
+</code></pre>
+<h2 id="classemetodos"><a class="header" href="#classemetodos">ClasseMetodos</a></h2>
+<p><strong>(exibir em todos os campos: código, nome, quantidade)</strong><br>
+Criar ClasseMetodos conforme:</p>
+<ol>
+<li><strong>FCADRASTRAESTATISTICA (função)</strong> → cadastrar 10 registros.</li>
+<li><strong>PQTDACIDENTES (procedimento)</strong> → consultar acidentes &gt; 100 e &lt; 500.</li>
+<li><strong>PMAIORMENOR (procedimento)</strong> → consultar menor e maior número de acidentes.</li>
+<li><strong>PACIMA (procedimento)</strong> → cidades com acidentes acima da média das 10 cidades.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sistema-de-eleição"><a class="header" href="#sistema-de-eleição">Sistema de Eleição</a></h1>
+<h2 id="regras"><a class="header" href="#regras">Regras</a></h2>
+<p>Em uma eleição há 2 candidatos em disputa</p>
+<ul>
+<li>
+<p>Criar um sistema que cadastre (votação) 5 eleitores em cada grupo de votações;</p>
+</li>
+<li>
+<p>Gravar também o cadastro eleitoral com 10 eleitores com seu número de eleitor e
+nome;</p>
+</li>
+<li>
+<p>Após os cadastramentos, processar e apurar: vencedor,2º colocado, brancos,
+nulos, assim como suas quantidades apuradas.</p>
+</li>
+<li>
+<p>CodCandidato:</p>
+<ul>
+<li><strong>1 → JOSE</strong></li>
+<li><strong>2 → MARIA</strong></li>
+<li><strong>3 → BRANCO</strong></li>
+<li><strong>4 → NULO</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="votação"><a class="header" href="#votação">Votação</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Campo</th><th>Tipo</th></tr></thead><tbody>
+<tr><td>seção</td><td>INT</td></tr>
+<tr><td>codCandidato</td><td>INT</td></tr>
+<tr><td>numEleitor</td><td>INT</td></tr>
+</tbody></table>
+</div>
+<h3 id="cadastro-eleitor"><a class="header" href="#cadastro-eleitor">Cadastro Eleitor</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Campo</th><th>Tipo</th></tr></thead><tbody>
+<tr><td>Numero Eleitor</td><td>INT</td></tr>
+<tr><td>Nome Eleitor</td><td>STRING</td></tr>
+<tr><td>Seção</td><td>INT</td></tr>
+</tbody></table>
+</div>
+<h2 id="validação"><a class="header" href="#validação">Validação</a></h2>
+<ul>
+<li>Seção deve estar entre: 01, 03, 04, 05, 09, 10.</li>
+<li>Número do eleitor deve existir no cadastro.</li>
+</ul>
+<h2 id="menus"><a class="header" href="#menus">Menus</a></h2>
+<h3 id="menu-principal"><a class="header" href="#menu-principal">Menu Principal</a></h3>
+<pre><code>1 – Cadastra Eleitor
+2 – Cadastra Votação 1 e 2
+3 – Agrupa Apuração
+4 – Menu Estatística
+9 – Fim
+</code></pre>
+<h3 id="cadastro-votação-12"><a class="header" href="#cadastro-votação-12">Cadastro Votação 1,2</a></h3>
+<pre><code>1 - Cadastro Votação 1
+2 - Cadastro Votação 2
+9 - FIM
+</code></pre>
+<h3 id="menu-estatística"><a class="header" href="#menu-estatística">Menu Estatística</a></h3>
+<pre><code>1 - Vencedor
+2 - Segundo colocado
+3 - Quantidade de votos em branco
+4 - Quantidade de votos nulos
+5 - Mostra eleitores
+6 - Mostra apuração
+9 - FIM
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sistema-de-votação-2021"><a class="header" href="#sistema-de-votação-2021">Sistema de Votação 2021</a></h1>
+<p>TAREFA – Manipulação de registro lógico e arquivo físico em Java.</p>
+<h2 id="classe-abstrata-votação"><a class="header" href="#classe-abstrata-votação">Classe Abstrata: Votação</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Atributo</th><th>Tipo</th></tr></thead><tbody>
+<tr><td>NumeroSeção</td><td>int</td></tr>
+<tr><td>NumeroCandidato</td><td>int</td></tr>
+</tbody></table>
+</div>
+<h2 id="classe-votação2021"><a class="header" href="#classe-votação2021">Classe Votação2021</a></h2>
+<ol>
+<li><strong>FCADRASTRAVOTAÇÃO (função)</strong> → cadastrar 200 registros (Seção 0 a 10, Candidato 0 a 300) com <code>RANDOM()</code>.</li>
+<li><strong>FCLASSIFICASEÇÃO (função)</strong> → classificar registros em memória por seção.</li>
+<li><strong>FGRAVAVOTAÇÃO (função)</strong> → gravar registros em <code>Votação2021.txt</code>.</li>
+<li><strong>Menu Indicadores</strong>:
+<ul>
+<li>Quantidade de eleitores por seção.</li>
+<li>Seção com maior e menor número de eleitores.</li>
+<li>Quantidade de votos por candidato.</li>
+<li>10 candidatos mais votados.</li>
+</ul>
+</li>
+</ol>
+<h2 id="menus-1"><a class="header" href="#menus-1">Menus</a></h2>
+<h3 id="sistema-de-votação"><a class="header" href="#sistema-de-votação">Sistema de Votação</a></h3>
+<pre><code>1 – Carregar Seção/Número Eleitor
+2 – Classificar por Seção
+3 – Gravar Registros
+4 – Mostrar Indicadores
+9 – Finalizar
+</code></pre>
+<h3 id="mostrar-indicadores"><a class="header" href="#mostrar-indicadores">Mostrar Indicadores</a></h3>
+<pre><code>1 – Quantidade Eleitores por Seção
+2 – Seção com Maior e Menor número de Eleitores
+3 – Quantidade de votos por candidato
+4 – 10 primeiros colocados (nro cand. e qtd votos)
+9 – Finaliza consulta
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="exercicios"><a class="header" href="#exercicios">Exercicios</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="resolucoes"><a class="header" href="#resolucoes">Resolucoes</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="simulados"><a class="header" href="#simulados">Simulados</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>

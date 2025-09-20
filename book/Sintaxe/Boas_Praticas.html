@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Boas Práticas - Guia Definitivo de Estudos — Linguagem de Programação</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Guia Definitivo de Estudos — Linguagem de Programação</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/HabacheRenan/Guia-Java-para-LP" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="boas-práticas"><a class="header" href="#boas-práticas">Boas Práticas</a></h1>
+<h1 id="diretrizes-de-nomenclatura-e-boas-práticas"><a class="header" href="#diretrizes-de-nomenclatura-e-boas-práticas">Diretrizes de Nomenclatura e Boas Práticas</a></h1>
+<h2 id="1-nome-de-classes"><a class="header" href="#1-nome-de-classes">1. Nome de Classes</a></h2>
+<ul>
+<li>Sempre inicie com letra maiúscula.</li>
+<li>Use o padrão PascalCase: <code>Cliente</code>, <code>ContaBancaria</code>, <code>CalculadoraImpostoComposto</code>.</li>
+</ul>
+<h2 id="2-nome-de-métodos"><a class="header" href="#2-nome-de-métodos">2. Nome de Métodos</a></h2>
+<ul>
+<li>Sempre inicie com letra minúscula.</li>
+<li>Use o padrão camelCase: <code>calcularTotal()</code>, <code>abrirConta()</code>, <code>imprimirRelatorio()</code>.</li>
+</ul>
+<h2 id="3-nome-de-variáveis-e-atributos"><a class="header" href="#3-nome-de-variáveis-e-atributos">3. Nome de Variáveis e Atributos</a></h2>
+<ul>
+<li>Sempre em camelCase, começando com letra minúscula: <code>saldoAtual</code>, <code>nomeCliente</code>, <code>quantidadeProdutos</code>.</li>
+<li>Evite abreviações confusas: prefira <code>telefoneContato</code> em vez de <code>telCt</code>.</li>
+</ul>
+<h2 id="4-nome-de-constantes"><a class="header" href="#4-nome-de-constantes">4. Nome de Constantes</a></h2>
+<ul>
+<li>Sempre em MAIÚSCULAS, com palavras separadas por _: <code>TAXA_JUROS</code>, <code>LIMITE_MAXIMO</code>.</li>
+</ul>
+<h2 id="5-indentação-e-espaçamento"><a class="header" href="#5-indentação-e-espaçamento">5. Indentação e Espaçamento</a></h2>
+<ul>
+<li>Use indentação consistente (4 espaços ou 1 TAB é o padrão em Java).</li>
+<li>Deixe linhas em branco para separar blocos lógicos de código, aumentando a legibilidade.</li>
+</ul>
+<h2 id="6-tamanho-das-classes-e-métodos"><a class="header" href="#6-tamanho-das-classes-e-métodos">6. Tamanho das Classes e Métodos</a></h2>
+<ul>
+<li>Prefira classes e métodos curtos, com responsabilidades bem definidas.</li>
+<li>Se um método faz muitas coisas, divida em métodos menores.</li>
+</ul>
+<h2 id="7-tamanho-de-métodos-e-parâmetros"><a class="header" href="#7-tamanho-de-métodos-e-parâmetros">7. Tamanho de Métodos e Parâmetros</a></h2>
+<ul>
+<li>Mantenha métodos curtos e objetivos: entre 10 e 30 linhas é o recomendado. Métodos muito grandes dificultam leitura e manutenção.</li>
+<li>Uma responsabilidade por método: se ele fizer mais de uma coisa, divida em métodos menores.</li>
+<li>Número de parâmetros:
+<ul>
+<li>Até 3 → ideal.</li>
+<li>4 → aceitável, mas pode indicar que precisa de revisão.</li>
+<li>5 ou mais → má prática. O recomendável é criar um objeto para agrupar esses dados.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-comentários"><a class="header" href="#8-comentários">8. Comentários</a></h2>
+<ul>
+<li>Comente o porquê do código, não apenas o que ele faz.</li>
+<li>Use <code>//</code> para comentários curtos e <code>/** ... */</code> para documentação de métodos e classes (JavaDoc).</li>
+</ul>
+<h2 id="9-tratamento-de-exceções"><a class="header" href="#9-tratamento-de-exceções">9. Tratamento de Exceções</a></h2>
+<ul>
+<li>Nunca deixe blocos try-catch vazios.</li>
+<li>Capture apenas as exceções necessárias, evitando <code>catch(Exception e)</code>.</li>
+<li>Forneça mensagens úteis ao usuário ou ao log.</li>
+</ul>
+<h2 id="10-nomes-significativos"><a class="header" href="#10-nomes-significativos">10. Nomes Significativos</a></h2>
+<ul>
+<li>Dê nomes claros e descritivos a variáveis, métodos e classes.</li>
+<li>Evite nomes genéricos como <code>dados</code>, <code>teste</code>, <code>obj</code>.</li>
+</ul>
+<h2 id="11-organização-de-pacotes"><a class="header" href="#11-organização-de-pacotes">11. Organização de Pacotes</a></h2>
+<ul>
+<li>Agrupe classes de acordo com suas funcionalidades.</li>
+<li>Use nomes de pacotes em minúsculo: <code>br.com.empresa.modelo</code>, <code>br.com.empresa.util</code>.</li>
+</ul>
+<h2 id="12-boas-práticas-de-código-limpo"><a class="header" href="#12-boas-práticas-de-código-limpo">12. Boas Práticas de Código Limpo</a></h2>
+<ul>
+<li>Evite números mágicos (use constantes).</li>
+<li>Prefira composição a herança quando fizer sentido.</li>
+<li>Sempre inicialize variáveis antes de usar.</li>
+<li>Remova código morto ou comentado.</li>
+</ul>
+<h2 id="13-uso-de-chaves"><a class="header" href="#13-uso-de-chaves">13. Uso de Chaves</a></h2>
+<ul>
+<li>Sempre use chaves em blocos de código, mesmo quando o comando for de apenas uma linha.</li>
+<li>Isso evita erros quando novos comandos forem adicionados.</li>
+<li>Exemplo ruim (sem chaves):
+<pre><code class="language-java">if (condicao) executar();
+</code></pre>
+</li>
+<li>Exemplo recomendado (com chaves):
+<pre><code class="language-java">if (condicao) {
+executar();
+}
+</code></pre>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Sintaxe/Sintaxe.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../Sintaxe/Sintaxes_Basicas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Sintaxe/Sintaxe.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../Sintaxe/Sintaxes_Basicas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
